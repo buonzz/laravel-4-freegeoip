@@ -26,6 +26,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase{
   
   public function testgetCountry(){
   	$var = new Buonzz\GeoIP\GeoIP;
+    $var->setIP('112.209.247.183');
   	$this->assertTrue($var->getCountry() == 'Philippines');
   	unset($var);
   }

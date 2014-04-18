@@ -10,6 +10,16 @@
 class GeoIP{
 
   private $geoip_data = NULL;
+  private $ip;
+
+  public function __construct(){
+      if(isset($_SERVER['REMOTE_ADDR']))
+          $this->ip = $_SERVER['REMOTE_ADDR'];     
+  }
+
+  public function setIP($ip){
+    $this->ip = $ip;
+  }
 
    public function getCountry(){
 			return $this->getItem('country_name');
@@ -51,9 +61,9 @@ class GeoIP{
       return $this->getItem('area_code');
    }
 
-   private function getItem($name){
+   private function getItem($name){      
         if($this->geoip_data == NULL)
-            $this->geoip_data = $this->resolve($_SERVER['REMOTE_ADDR']);        
+            $this->geoip_data = $this->resolve($this->ip);        
 
         return $this->geoip_data->$name;
    }
@@ -67,11 +77,16 @@ class GeoIP{
       curl_setopt ($ch, CURLOPT_URL, $url);
       curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
       curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-      //curl_setopt($ch, CURLOPT_HEADER, true);
+      
       $file_contents = curl_exec($ch);    
       curl_close($ch);
       
       $data = json_decode($file_contents);
+      
+      var_dump($data);
+
+      if($data == NULL)
+          throw new \Exception("Problems in retrieving data from http://freegeoip.net");
 
       return $data;
     }
