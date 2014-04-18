@@ -83,8 +83,6 @@ class GeoIP{
       
       $data = json_decode($file_contents);
       
-      var_dump($data);
-
       if($data == NULL)
           throw new \Exception("Problems in retrieving data from http://freegeoip.net");
 
