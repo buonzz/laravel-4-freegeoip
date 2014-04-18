@@ -1,6 +1,7 @@
 {
     "name": "buonzz/laravel-4-freegeoip",
     "description": "Laravel 4 Library for calling http://freegeoip.net/ API",
+    "keywords": ["geoip", "freegeoip.net", "ip to location", "track location", "maps", "retrieve location"],
     "license": "MIT",
     "authors": [
         {
