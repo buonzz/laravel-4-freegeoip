@@ -33,7 +33,7 @@ class GeoIP{
       return $this->getItem('region_code');
    }
 
-   public function getRegionName(){
+   public function getRegion(){
        return $this->getItem('region_name');
    }
 
