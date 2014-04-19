@@ -3,6 +3,7 @@
     "description": "Laravel 4 Library for detecting geogpraphical location info of your visitors",
     "keywords": ["geoip", "freegeoip.net", "ip to location", "track location", "maps", "retrieve location", "no local geodatabase required"],
     "license": "MIT",
+    "homepage": "http://wwww.darwinbiler.com/laravel-4-freegeoip/docs/v1.0.1",
     "authors": [
         {
             "name": "Darwin Biler",
@@ -16,7 +17,8 @@
         "lib-curl" : "*"
     },
 	"require-dev": {        
-		"phpunit/phpunit": "3.7.*"
+		"phpunit/phpunit": "3.7.*",
+        "phpdocumentor/phpdocumentor": "2.*"
     },
 	"autoload": {
         "psr-0": {
