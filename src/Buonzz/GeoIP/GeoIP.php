@@ -62,10 +62,30 @@ class GeoIP{
    }
 
    private function getItem($name){      
+        
         if($this->geoip_data == NULL)
-            $this->geoip_data = $this->resolve($this->ip);        
+          $this->retrievefromCache();
 
         return $this->geoip_data->$name;
+   }
+
+   private function retrievefromCache(){      
+      
+      if (class_exists('\\Cache'))
+      {
+        
+        $cache_key = 'laravel-4-freegeoip-'. $this->ip;     
+
+        if (\Cache::has($cache_key))
+             $this->geoip_data = \Cache::get($cache_key);
+          else
+          {
+              $this->geoip_data = $this->resolve($this->ip); 
+              \Cache::put($cache_key, $this->geoip_data , 60*60);       
+          }
+      }
+      else
+           $this->geoip_data = $this->resolve($this->ip);
    }
 
    function resolve($ip){
