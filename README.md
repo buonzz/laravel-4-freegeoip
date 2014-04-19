@@ -75,4 +75,11 @@ Get area code of the visitor
     GeoIP::getAreaCode();  // returns "716"
 
 
+Credits
+=======
+
+* Alexandre Fiori for the awesome http://freegeoip.net web api
+* MaxMind for the data
+
+
 
