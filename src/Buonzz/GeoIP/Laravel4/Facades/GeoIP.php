@@ -14,5 +14,5 @@ class GeoIP extends Facade{
    *  method to be called to return the "real" class, since facade is just a front
    *  note that the yourclass is lowercase, since that is what we had registered in the ServiceProvider
    */
-   protected static function getFacadeAccessor(){ return 'geoip';};
+   protected static function getFacadeAccessor(){ return 'geoip';}
 }
