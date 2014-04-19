@@ -1,67 +1,142 @@
 <?php namespace Buonzz\GeoIP;
+
 /**
-*  A sample class
+*  Contains all the method to retrieve data from freegeoip.net.
 *
-*  Use this section to define what this class is doing, the PHPDocumentator will use this
-*  to automatically generate an API documentation using this information.
+*  This contains the geoip data as well all the marshalling mechanism from 
+*  the web service.
 *
-*  @author yourname
+*  @author Darwin Biler <buonzz@gmail.com>
 */
 class GeoIP{
 
+
+  /**  @var mixed $geoip_data  contains the JSON object retrieved from the API */
   private $geoip_data = NULL;
+
+  /**  @var string $ip contains the IP of the current visitor */
   private $ip;
 
+
+  /**
+  * constructor which initialiazes various things.
+  *
+  * detects if the REMOTE_ADDR is present (usually not, when running in cli or phpunit)
+  * if present use that one.
+  *
+  * @return void
+  */
   public function __construct(){
       if(isset($_SERVER['REMOTE_ADDR']))
           $this->ip = $_SERVER['REMOTE_ADDR'];     
   }
 
+  /**
+  * allows the user to set the IP to be process instead of retrieving it from server.
+  *
+  * @return void
+  */
   public function setIP($ip){
     $this->ip = $ip;
   }
 
-   public function getCountry(){
+  /**
+  * get the descriptive name of the country.
+  *
+  * @return string
+  */
+  public function getCountry(){
 			return $this->getItem('country_name');
    }
 
-   public function getCountryCode(){
+  /**
+  * get the 2-letter code  of the country.
+  *
+  * @return string
+  */
+  public function getCountryCode(){
       return $this->getItem('country_code');
    }
 
-   public function getRegionCode(){
+  /**
+  * get the region code.
+  *
+  * @return string
+  */
+  public function getRegionCode(){
       return $this->getItem('region_code');
    }
 
+  /**
+  * get the descriptive name of the region.
+  *
+  * @return string
+  */
    public function getRegion(){
        return $this->getItem('region_name');
    }
 
-   public function getCity(){
+  /**
+  * get the descriptive name of the City.
+  *
+  * @return string
+  */
+  public function getCity(){
        return $this->getItem('city');
    }
 
-   public function getZipCode(){
+  /**
+  * get the zip code.
+  *
+  * @return string
+  */
+  public function getZipCode(){
        return $this->getItem('zipcode');
    }
 
-   public function getLatitude(){
+  /**
+  * get the latitude of the location.
+  *
+  * @return double
+  */
+  public function getLatitude(){
        return $this->getItem('latitude');
    }
 
-   public function getLongitude(){
+  /**
+  * get the longitude of the location.
+  *
+  * @return double
+  */
+  public function getLongitude(){
       return $this->getItem('longitude');
    }
 
-   public function getMetroCode(){
+  /**
+  * get the metro code.
+  *
+  * @return string
+  */
+  public function getMetroCode(){
      return $this->getItem('metro_code');
    }
 
-   public function getAreaCode(){
+  
+  /**
+  * get the area code.
+  *
+  * @return string
+  */
+  public function getAreaCode(){
       return $this->getItem('area_code');
    }
 
-   private function getItem($name){      
+  /**
+  * generic property retriever.
+  *
+  * @return string
+  */
+  private function getItem($name){      
         
         if($this->geoip_data == NULL)
           $this->retrievefromCache();
@@ -69,7 +144,12 @@ class GeoIP{
         return $this->geoip_data->$name;
    }
 
-   private function retrievefromCache(){      
+  /**
+  * check if the Cache class exists and use caching mechanism if there is, otherwise just call the API directly.
+  *
+  * @return void
+  */
+  private function retrievefromCache(){      
       
       if (class_exists('\\Cache'))
       {
@@ -88,6 +168,14 @@ class GeoIP{
            $this->geoip_data = $this->resolve($this->ip);
    }
 
+
+  /**
+  * call the freegeoip.net for data, retrieve it as JSON and convert it to stdclass.
+  *
+  * @todo make this thing use Guzzle instead, you novice kid!
+  *
+  * @return void
+  */
    function resolve($ip){
       
       $url = 'https://freegeoip.net/json/'.$ip;

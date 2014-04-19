@@ -4,10 +4,11 @@ use Illuminate\Support\ServiceProvider;
 use Buonzz\GeoIP\GeoIP as GeoIP;
 
 /**
-*  The Laravel4 Service provider to bing your class to the IoC container
+*  Binds the GeoIP class to the IoC container.
 *
-*  This makes it possible for Laravel to find your classes in the App object
-*  like App::make('YourClass');
+*  This makes it possible for Laravel to find the GeoIP in the App object
+*  like App::make('GeoIP');
+*  the same binding is also used by facade to resolve the class
 *  
 */
 class GeoIPServiceProvider extends ServiceProvider{
