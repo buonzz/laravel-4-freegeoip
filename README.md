@@ -1,5 +1,7 @@
 FreeGeoIP for Laravel 4 
-===================
+=======================
+
+[![Build Status](https://travis-ci.org/buonzz/laravel-4-freegeoip.svg?branch=master)](https://travis-ci.org/buonzz/laravel-4-freegeoip)
 
 Laravel 4 Library for calling http://freegeoip.net/ API.
 
@@ -8,7 +10,6 @@ So you dont really have to worry about downloading and maintaining geoip data fr
 
 Just install the package, add the config and it is ready to use!
 
-[![Build Status](https://travis-ci.org/buonzz/laravel-4-freegeoip.svg?branch=master)](https://travis-ci.org/buonzz/laravel-4-freegeoip)
 
 Requirements
 ============
