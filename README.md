@@ -1,7 +1,8 @@
 FreeGeoIP for Laravel 4 
 =======================
 
-[![Build Status](https://travis-ci.org/buonzz/laravel-4-freegeoip.svg?branch=master)](https://travis-ci.org/buonzz/laravel-4-freegeoip)
+[![Build Status](https://travis-ci.org/buonzz/laravel-4-freegeoip.svg?branch=master)](https://travis-ci.org/buonzz/laravel-4-freegeoip)  ![stable](http://img.shields.io/badge/stable%20-v1.0.1-blue.svg)
+
 
 Laravel 4 Library for calling http://freegeoip.net/ API.
 
