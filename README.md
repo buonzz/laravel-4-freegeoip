@@ -33,6 +33,20 @@ Facade
 
     'GeoIP'            => 'Buonzz\GeoIP\Laravel4\Facades\GeoIP',
 
+Configuration
+============
+
+This library supports optional configuration.
+
+To get started, first publish the package config file:
+
+```bash
+$ php artisan config:publish buonzz/laravel-4-freegeoip
+```
+
+- `freegeopipURL`: defines the URL of the FreeGeoIP API. Use HTTPS or not. Default to `http://www.freegeoip.net/json/`.
+- `timeout`: defines the timeout when calling the FreeGeoIP API (in seconds). Default to 30.
+
 
 Usage
 =====

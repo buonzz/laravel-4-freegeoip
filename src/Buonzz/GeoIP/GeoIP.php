@@ -178,13 +178,12 @@ class GeoIP{
   */
    function resolve($ip){
       
-      $url = 'https://freegeoip.net/json/'.$ip;
-      $timeout = 30; // set to zero for no timeout
+      $url = \Config::get('geopip::freegeopipURL').$ip;
       
       $ch = curl_init();
       curl_setopt ($ch, CURLOPT_URL, $url);
       curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-      curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+      curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, \Config::get('geopip::timeout'));
       
       $file_contents = curl_exec($ch);    
       curl_close($ch);
