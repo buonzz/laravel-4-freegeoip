@@ -12,6 +12,12 @@ use Buonzz\GeoIP\GeoIP as GeoIP;
 *  
 */
 class GeoIPServiceProvider extends ServiceProvider{
+
+	public function boot()
+	{
+		$this->package('buonzz/laravel-4-freegeoip', null, __DIR__.'/../../../..');
+	}
+	
 	/**
 	* Bind the class to IoC container
 	*  @return GeoIP;
