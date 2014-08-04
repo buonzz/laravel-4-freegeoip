@@ -178,12 +178,12 @@ class GeoIP{
   */
    function resolve($ip){
       
-      $url = \Config::get('geopip::freegeopipURL').$ip;
+      $url = \Config::get('laravel-4-freegeoip::freegeoipURL').$ip;
       
       $ch = curl_init();
       curl_setopt ($ch, CURLOPT_URL, $url);
       curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-      curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, \Config::get('geopip::timeout'));
+      curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, \Config::get('laravel-4-freegeoip::timeout'));
       
       $file_contents = curl_exec($ch);    
       curl_close($ch);
