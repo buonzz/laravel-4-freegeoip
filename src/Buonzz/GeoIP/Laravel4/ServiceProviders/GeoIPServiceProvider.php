@@ -20,11 +20,17 @@ class GeoIPServiceProvider extends ServiceProvider{
 	
 	/**
 	* Bind the class to IoC container
-	*  @return GeoIP;
 	*/
 	public function register(){
-		$this->app->bind('geoip', function(){
-			return new GeoIP;
+		$this->app->bind('geoip', function($app) {
+			
+			// Inject configuration variables into the constructor
+			$config = [];
+
+			foreach (['freegeoipURL', 'timeout'] as $value)
+				$config[$value] = $app['config']->get('laravel-4-freegeoip::'.$value);
+
+			return new GeoIP($config);
 		});
 	}
 }
