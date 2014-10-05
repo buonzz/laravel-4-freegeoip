@@ -32,7 +32,7 @@ class GeoIP {
 	/**
 	* Constructor which initialiazes various things.
 	*
-	* detects if the REMOTE_ADDR is present (usually not, when running in CLI or PHPUnit)
+	* Detects if the REMOTE_ADDR is present (usually not, when running in CLI or PHPUnit)
 	* if present use that one.
 	*
 	* @return void
@@ -195,7 +195,7 @@ class GeoIP {
 	* Call the freegeoip for data, retrieve it as JSON and convert it to StdClass.
 	*
 	* @todo make this thing use Guzzle instead, you novice kid!
-	*
+	* @throws \Exception When we have got a problem when retrieving data
 	* @return void
 	*/
 	private function resolve($ip)
@@ -205,7 +205,9 @@ class GeoIP {
 		$ch = curl_init();
 		curl_setopt ($ch, CURLOPT_URL, $url);
 		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+		// The number of seconds to wait while trying to connect
 		curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $this->config['timeout']);
+		// The maximum number of seconds to allow cURL functions to execute
 		curl_setopt ($ch, CURLOPT_TIMEOUT, $this->config['timeout']);
 
 		$file_contents = curl_exec($ch);    

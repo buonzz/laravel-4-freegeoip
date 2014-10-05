@@ -24,6 +24,7 @@ class GeoIPServiceProvider extends ServiceProvider{
 	public function register(){
 		$this->app->bind('geoip', function($app) {
 			
+			// Inject configuration variables into the constructor
 			$config = [];
 
 			foreach (['freegeoipURL', 'timeout'] as $value)
