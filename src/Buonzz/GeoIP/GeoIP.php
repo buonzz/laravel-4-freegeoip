@@ -91,7 +91,7 @@ class GeoIP{
   * @return string
   */
   public function getZipCode(){
-       return $this->getItem('zipcode');
+       return $this->getItem('zip_code');
    }
 
   /**
